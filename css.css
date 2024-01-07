@@ -178,6 +178,52 @@ input#name:focus, input#password:focus {
   white-space: nowrap;
 }
 
+.separator {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  color: #737373;
+  margin-top: 6px;
+  padding: 0 40px;
+  font: inherit;
+  font-size: .8125rem;
+  font-weight: 600;
+}
+
+.separator .line {
+  height: 1px;
+  width: 40%;
+  background-color: #dbdbdb;
+}
+
+.other {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 20px;
+  margin: 20px;
+}
+
+
+.fb-login-btn {
+  margin: 1rem;
+  border: 0;
+  cursor: pointer;
+  font-size: 14px;
+  color: #385185;
+  font-weight: 600;
+  background: transparent;
+}
+
+.fb-icon {
+  color: #385185;
+  font-size: 1rem;
+  padding-right: 1px;
+}
+
+
 .forgot, .forgot:active, .forgot:hover, .forgot:visited {
   font-size:12px;
   margin-top:12px;
@@ -241,6 +287,7 @@ input#name:focus, input#password:focus {
   padding: 38px 0;
   max-width:935px;
   font-size:12px;
+  font-weight: 400;
   margin:0 auto;
   width:100%
 }
@@ -260,6 +307,7 @@ input#name:focus, input#password:focus {
   display: inline-block;
   margin-right: 13px;
   margin-bottom:7px;
+  font-weight: 400;
 }
 
 .footer-nav ul li a {
@@ -267,8 +315,21 @@ input#name:focus, input#password:focus {
   text-decoration: none;
 }
 
+footer select {
+  font-size: 12px;
+  color: #737373;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+footer select {
+  outline: none;
+  border: none;
+  background-color: #ffffff;
+}
+
 .footer span {
-  color:#999;
+  color:#737373;
 }
 
 span.language { 
